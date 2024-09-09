@@ -57,8 +57,6 @@ client.on(Events.GuildCreate, async (guild) => {
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
-  console.log(interaction);
-
   if (!interaction.isChatInputCommand()) {
     return;
   }

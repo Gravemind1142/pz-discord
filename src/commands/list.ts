@@ -7,7 +7,6 @@ export const data = new SlashCommandBuilder()
   .setDescription("Lists users on the pz server");
 
 export async function execute(interaction: ChatInputCommandInteraction) {
-  console.log("interaction recieved");
   const dbUsers = await prisma.user.findMany({
     select: {
       username: true,
@@ -15,21 +14,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     },
   });
 
-  console.log("dbUsers completed")
-
   const dbResponse = dbUsers
     .map((v) => `${v.username} - <@${v.discord_id}>`)
     .join("\n");
-
-  console.log(dbResponse)
 
   const rconResponse = await rcon
     .session((c) => c.send("players"))
     .catch((error: RconError) => {
       return `RconError: ${error.message}`;
     });
-
-  console.log(rconResponse)
 
   return interaction.reply(`${rconResponse}\n\nWhitelist:\n${dbResponse}`);
 }
