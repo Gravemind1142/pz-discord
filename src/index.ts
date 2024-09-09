@@ -9,7 +9,7 @@ export const client = new Client({
 
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-  console.log("BOT READY");
+  console.log("node start done");
 
   deployCommands();
 
