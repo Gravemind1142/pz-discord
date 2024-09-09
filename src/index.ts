@@ -49,7 +49,7 @@ client.once(Events.ClientReady, (readyClient) => {
         },
       },
     });
-  }, 3 * 1000);
+  }, 60 * 1000);
 });
 
 client.on(Events.GuildCreate, async (guild) => {
