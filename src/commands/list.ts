@@ -24,5 +24,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       return `RconError: ${error.message}`;
     });
 
-  return interaction.reply(`${rconResponse}\n\nWhitelist:\n${dbResponse}`);
+  return interaction.reply({
+    content: `${rconResponse}\n\nWhitelist:\n${dbResponse}`,
+    allowedMentions: { parse: [] },
+  });
 }
