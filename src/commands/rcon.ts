@@ -23,6 +23,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       content: "No command provided",
       ephemeral: true,
     });
+  
+  await interaction.deferReply(); 
 
   const response = await rcon
     .session((c) => c.send(cmd))
@@ -30,5 +32,5 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       return `RconError: ${error.message}`;
     });
 
-  return interaction.reply({ content: response });
+  return interaction.editReply({ content: response });
 }
