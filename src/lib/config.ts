@@ -10,6 +10,7 @@ const {
   RCON_HOST,
   RCON_PORT,
   RCON_PASSWORD,
+  USE_RESPAWN_SYSTEM
 } = process.env;
 
 if (
@@ -33,6 +34,8 @@ export const rcon = new Rcon({
   password: RCON_PASSWORD,
   timeout: 3000,
 });
+
+export const using_respawn_system = USE_RESPAWN_SYSTEM === "true";
 
 export const admins = (process.env.ADMIN_USER_IDS || "")
   .split(",")

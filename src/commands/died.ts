@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/config";
+import { prisma, using_respawn_system } from "@/lib/config";
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -8,6 +8,12 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
+  if (!using_respawn_system) {
+    return interaction.reply(
+      `You don't need to run this command. Respawn system is disabled.`
+    );
+  }
+
   const myUser = await prisma.user.findFirst({
     where: {
       discord_id: interaction.user.id,
